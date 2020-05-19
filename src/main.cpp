@@ -1,11 +1,12 @@
 #include <Pulso.h>
 #include <Tempo.h>
+#include <Config.h>
 
 Pulso pulso1(14,15);
 Pulso pulso2(16,17);
 Pulso pulso3(18,19);
-Tempo tempo(200);
-Tempo tempoLoop(300);
+Tempo tempo(1000);
+Tempo tempoLoop(TEMPO_LOOP);
 
 
 void setup() {
@@ -34,13 +35,14 @@ void setup() {
 
   digitalWrite(12, LOW);
   digitalWrite(13, LOW);
+  
 
 
 
 }
 
 void loop() {
-  static int x = 100;
+  static unsigned long x = TEMPO_LOOP;
   static int cont = 0;
 
   if(tempoLoop.timer()){
@@ -64,7 +66,14 @@ void loop() {
     }
   }
   if(tempo.timer()){
-    x--;
+    if(x > 1){
+          x--;
+              tempoLoop.periodo = x;
+
+
+
+    }
+    
   }
   
 }
