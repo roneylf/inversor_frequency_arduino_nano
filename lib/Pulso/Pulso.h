@@ -7,6 +7,11 @@ private:
     int ard_pin01;
     int ard_pin02;
 
+    static bool setaVez(); 
+
+
+    static bool vez;
+
     
 public:
     Pulso(int pin01, int pin02);

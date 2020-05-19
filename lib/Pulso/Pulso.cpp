@@ -14,8 +14,21 @@ void Pulso::inicio(bool invert){
         pino02 = !pino01;
     }
 }
+
+bool Pulso::setaVez(){
+    if(Pulso::vez){
+        Pulso::vez = false;
+        return true;
+    }
+    else{
+        Pulso::vez = true;
+        return false;
+    }
+}
+
 void Pulso::pulse(){
-    if(!pino01){
+    if(setaVez()){
+        if(!pino01){
         digitalWrite(ard_pin01, pino01);
         digitalWrite(ard_pin02, pino02);
     }
@@ -25,4 +38,8 @@ void Pulso::pulse(){
     }
         pino01 = !pino01;
         pino02 = !pino01;
+    }
 }
+
+
+bool Pulso::vez = false;
