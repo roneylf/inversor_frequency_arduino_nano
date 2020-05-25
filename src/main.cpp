@@ -44,8 +44,10 @@ void setup() {
 void loop() {
   static unsigned long x = TEMPO_LOOP;
   static int cont = 0;
+  static int cont_loop = 0;
 
-  if(tempoLoop.timer()){
+
+  if(cont_loop > x){
     switch (cont)
     {
     case 0:
@@ -64,6 +66,7 @@ void loop() {
     if(cont > 2){
       cont = 0;
     }
+    cont_loop = 0;
   }
   if(tempo.timer()){
     if(x > 1){
@@ -75,5 +78,6 @@ void loop() {
     }
     
   }
+  cont_loop++;
   
 }
